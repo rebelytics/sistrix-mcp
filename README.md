@@ -12,12 +12,16 @@ Working with SISTRIX through an MCP — Visibility Index, keyword and ranking da
 
 ## What this repo contains
 
-- `SKILL.md` — the whole guide, in one file.
+- `SKILL.md` — the mental model, the universal parameter rules, the pre-flight checklist, the portability test, and a section map saying when to load each reference file.
+- `references/tool-surface.md` — the tool-family reference (§3): the legacy-name mapping table and the `domain` / `keyword` / `links` / `ai_*` / `project` families with their views and parameter rules.
+- `references/response-shapes-and-errors.md` — response-shape rules (§4) and the error taxonomy incl. credits (§5).
+- `references/recipes.md` — workflows (§6) and analysis recipes (§7).
+- `references/ai-visibility.md` — the branded-vs-discovery rule for AI-visibility reporting (§8).
 - `LICENSE` — CC BY 4.0.
 
 ## Install
 
-Copy the skill directory into your MCP-capable agent's skills directory, following the client-specific path, and restart the client. Tool names in the skill are written without the MCP server prefix; match by the suffix.
+Install the whole skill directory — `SKILL.md` and `references/` must travel together — into your MCP-capable agent's skills directory, following the client-specific path, and restart the client. Tool names in the skill are written without the MCP server prefix; match by the suffix.
 
 ## Related
 

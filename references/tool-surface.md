@@ -433,7 +433,35 @@ one for its AI sibling.**
   calls discovering this, and don't promise a per-prompt SOV the data can't
   support — for tracker prompts the only competitor SOV the MCP exposes is the
   `ai_tracker competitors` aggregate (see its caveats below).
-- `ai_tracker` — per-tracker views. Pass a tracker hash. `view`: `prompts`
+- `ai_topicresearch` — *from the announced schema, not yet exercised
+  against the live server.* Which topics people discuss with AI chatbots
+  around a keyword. `view` (required): `overview` (aggregate for a
+  `keyword`: number of topics, average dialog length, journey-stage and
+  intent distribution), `list` (the individual topics for a `keyword`,
+  including `topic_label`, search volume, dialog length, journey stage and
+  intent), `topic` (full detail for one topic: buyer persona, emotional
+  driver, next best action, unasked questions, leading brands, per-model
+  prompt library). The schema states the flow as overview → list → topic
+  and maps the views to the API's `ai.topicresearch.overview`, `.list` and
+  `.topic`.
+  - **`view=topic` takes `topic`, whose value is a `topic_label` from
+    `view=list`** — the parameter name and the field name differ (§10).
+  - `keyword` is required for `overview` and `list`; `kw` is its alias
+    (the SISTRIX API name). Pass one of the two.
+  - `view=list` filters: `intent` (an intent group — `learning`,
+    `commercial`, `transactional`, `informational` — or a fine-grained
+    intent value) and `journey_stage` (`awareness` | `consideration` |
+    `decision` | `retention`); paginate with `limit` / `page`.
+  - **The schema states that `view=list` costs 1 credit per returned
+    topic**, so `limit` sets the price of the call. Agree the credit budget
+    with the user before a broad list pull (§5, credits).
+  - The announced schema carries no `country` parameter on this tool,
+    although §2 describes `country` for the `ai_*` family.
+  - An overview returning 0 topics is a coverage reading — see the
+    `ai_topicresearch` note in §3.3.
+- `ai_tracker` — per-tracker views. Pass the tracker hash as `project` (the
+  value comes from `ai_tracker_overview`'s `hash` field; the parameter name and
+  the field name differ). `view`: `prompts`
   ({prompt, brand_found, avg_pos, tags, models}), `competitors` ({name, visindex,
   mentions, prompts}), `environment` ({misc, prompt_count, mentions}), and
   `sources_domains` | `sources_urls` | `sources_hosts` ({url | domain | host,
@@ -540,7 +568,10 @@ one for its AI sibling.**
 
 ### 3.6 Project / Optimizer (`project`)
 
-- `project view=overview` — list projects (hash + name). Call first.
+- `project view=overview` — list projects (hash + name). Call first. Every
+  other `project` view and every `project_onpage` view takes that hash as
+  `project` (the value comes from the `hash` field; the parameter name and the
+  field name differ).
 - `project_onpage view=meta` — project metadata ({hash, name, tags}). Note that
   this metadata view sits on the **onpage** tool rather than the `project` tool,
   even though it is not crawl data — the legacy name for it was the bare

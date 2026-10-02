@@ -1,7 +1,7 @@
 ---
 name: "sistrix-mcp"
 description: "Companion skill for the SISTRIX MCP server (SEO + AI-visibility data via the SISTRIX API). Load this whenever the user works with SISTRIX through an MCP — pulling Visibility Index, keyword/ranking data, backlinks, competitor sets, domain traffic estimates, or AI Overviews / AI Mode / ChatGPT / Perplexity mentions, sources and trackers. Also load for SISTRIX Optimizer project work (project rankings, onpage crawls) and any cross-market comparison or report built on SISTRIX data. Trigger on mentions of Sichtbarkeitsindex, ai_check/ai_tracker, the domain/keyword/links/project tools and their view parameters, or older ai_entity/ai_top/domain_/keyword_ names — even when the tools aren't named but SISTRIX data is clearly needed. Teaches the real behaviour of the MCP, including response-shape quirks and the gotchas tool descriptions omit."
-version: 1.5.0
+version: 1.6.0
 license: CC-BY-4.0
 origin: https://github.com/rebelytics/sistrix-mcp
 maintainer: Eoghan Henn / rebelytics (eoghan@rebelytics.com)
@@ -48,7 +48,9 @@ this file is not evidence that SISTRIX lacks a capability: a companion skill is
 loaded precisely because the agent doesn't know the tool, so an uncovered
 surface reads as a missing feature when it may only be an uncovered surface.
 Check the tool schemas the server announces before concluding something isn't
-there.
+there. One tool is documented from its announced schema only and has not been
+exercised against the live server: `ai_topicresearch` (§3.5). Treat its entry
+as the schema's claim until a live call per view confirms the shape.
 
 ---
 
@@ -156,7 +158,7 @@ resolve here by heading; "the principles section" means §10.
 | 3.2 | Domain (`domain`) | `references/tool-surface.md` |
 | 3.3 | Keyword (`keyword`) — incl. "Coverage is not demand" and the lead-variant rule (one string ≠ the concept's demand) | `references/tool-surface.md` |
 | 3.4 | Links (`links`) — domain only, no country | `references/tool-surface.md` |
-| 3.5 | AI visibility (`ai_*`) — incl. the `ai_tracker` note (no execution counts, no country/language in `view=prompts`), `model` vocabulary, token-cost trap | `references/tool-surface.md` |
+| 3.5 | AI visibility (`ai_*`) — incl. the `ai_tracker` note (no execution counts, no country/language in `view=prompts`), the `ai_topicresearch` entry (schema only, unexercised), `model` vocabulary, token-cost trap | `references/tool-surface.md` |
 | 3.6 | Project / Optimizer (`project`) — incl. onpage crawl views | `references/tool-surface.md` |
 | 4 | Response shape — assume nothing | `references/response-shapes-and-errors.md` |
 | 5 | Error taxonomy & resilience — incl. credits | `references/response-shapes-and-errors.md` |
@@ -364,6 +366,12 @@ engine refused something the schema accepted — back out rather than retry
 variants. When a failure's blast radius exceeds the thing you changed,
 suspect your own parameter before the tool: an error larger than its cause
 misdirects by default.
+
+And one about naming: **a discovery call gives the value, never the
+parameter name** — here, `ai_tracker_overview` and `project view=overview`
+return `hash` while the consuming tools take it as `project`, so record
+every argument name from the announced schema, not from the field that
+supplied its value.
 
 And three more, all about reading a response for more than it says:
 

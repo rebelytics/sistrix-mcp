@@ -79,7 +79,8 @@ footprint shrinking) vs **long-tail attrition** (losses concentrated in page 3+)
 A "keyword count halved" headline overstates the visibility impact when the lost
 keywords were low-VI deep-ranking long-tail — the decomposition tells you which.
 For drops in the past (update post-mortems), use the historical forensics
-recipe below.
+recipe below. Before calling the decline the domain's own — or the sector's —
+run the peer control sized to that claim (7.3, rule 4).
 
 **Striking-distance / quick wins.** `keyword_domain_seo from_pos=11 to_pos=20`
 (+ `domain view=opportunities`) for near-page-1 terms, sized with
@@ -216,12 +217,23 @@ follow the sequence and its verification rules:
    today; one recovered keyword on a "disappeared" list discredits the whole
    analysis. Prefer precise, falsifiable wording ("dropped out of the top
    results during the update window") over absolutes ("disappeared", "lost").
+   And the undated pull is itself a **snapshot** — the latest weekly
+   ranking set, not today's SERP. A passing control call proves the snapshot
+   was served; it does not prove the snapshot matches what a user sees now.
+   Before a single-keyword claim reaches a client, either check the live
+   SERP in that market's search engine (or the first-party average position
+   from a search console) or phrase it as the tool's reading with its date.
+   An **absence** claim on a volatile head term — a ranking URL that has
+   changed more than once in the year, a position that swung tens of places
+   between snapshots — needs the live check, not the phrasing: the failure
+   shape is "today not in the top 100" written from the snapshot while the
+   domain sat on page one in a live search.
 
 ### 7.3 Recipe: Cross-domain natural experiment (update attribution across a portfolio)
 
 For "which update hit us, and why?" answered by comparing many domains — e.g. a
 portfolio of sibling ccTLD domains, or a treatment domain against controls that
-share its content/template. Three design rules keep it honest:
+share its content/template. Four design rules keep it honest:
 
 1. **Enumerate all outcome branches *before* pulling any data.** Framing one
    branch as the expected outcome biases the read of everything that follows.
@@ -238,6 +250,21 @@ share its content/template. Three design rules keep it honest:
    link profiles only — historical profiles can't be reconstructed — so any
    cross-domain spam-share comparison used to explain a past event assumes link
    accumulation/persistence and must say so.
+4. **Size a peer control to the claim it carries.** One or two peer domains
+   moving the same way as the subject support only "the loss is not obviously
+   unique". A claim that a decline is sector- or market-wide needs a **set**:
+   roughly 15–25 domains of the same type, chosen by type (a sector list,
+   `domain view=competitors`, a directory), never by the names that come to
+   mind first. `domain view=visindex history=true limit=60` per domain gives
+   a year of weekly values in one call each, so a 25-domain pull is cheap;
+   compute the same-window change per domain and report the **median**, the
+   count of **risers against fallers**, and the **subject's rank** in that
+   distribution. State the peer count and the selection rule beside any
+   peer-based sentence. The failure shape: two hand-picked peers had fallen
+   about as far as the subject and the draft said the whole sector was
+   losing; the set showed a mild median decline, a third of the peers rising,
+   and the subject near the bottom of the distribution — a domain-specific
+   loss the pair had disguised.
 
 Cheap-failing call sequence for the portfolio:
 

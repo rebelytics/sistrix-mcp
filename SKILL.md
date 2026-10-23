@@ -1,31 +1,20 @@
 ---
-name: "sistrix-mcp"
+name: sistrix-mcp
 description: "Companion skill for the SISTRIX MCP server (SEO + AI-visibility data via the SISTRIX API). Load this whenever the user works with SISTRIX through an MCP — pulling Visibility Index, keyword/ranking data, backlinks, competitor sets, domain traffic estimates, or AI Overviews / AI Mode / ChatGPT / Perplexity mentions, sources and trackers. Also load for SISTRIX Optimizer project work (project rankings, onpage crawls) and any cross-market comparison or report built on SISTRIX data. Trigger on mentions of Sichtbarkeitsindex, ai_check/ai_tracker, the domain/keyword/links/project tools and their view parameters, or older ai_entity/ai_top/domain_/keyword_ names — even when the tools aren't named but SISTRIX data is clearly needed. Teaches the real behaviour of the MCP, including response-shape quirks and the gotchas tool descriptions omit."
-version: 1.6.0
+version: 1.7.0
 license: CC-BY-4.0
-origin: https://github.com/rebelytics/sistrix-mcp
-maintainer: Eoghan Henn / rebelytics (eoghan@rebelytics.com)
+metadata:
+  author: Eoghan Henn and contributors
+  source: https://github.com/rebelytics/sistrix-mcp
 ---
 
 # SISTRIX MCP Companion
-
-**Created by Eoghan Henn / [rebelytics.com](https://rebelytics.com)**
 
 A field guide to the SISTRIX MCP server. It documents how the tools actually
 behave — parameter rules, inconsistent response shapes, error patterns, and
 token-cost traps — so a session using the MCP is structured and avoids the
 common mistakes. It does not replace the MCP's own tool descriptions; it adds
 the operational knowledge those descriptions omit.
-
-**Licence:** Released under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-You may share and adapt it for any purpose with appropriate credit.
-
-**Feedback & Support:** If the methodology here proves wrong or incomplete, or
-you hit SISTRIX MCP behaviour this skill doesn't cover, log it and open an issue
-on the skill's [public repository](https://github.com/rebelytics/sistrix-mcp), or contact
-Eoghan Henn via [rebelytics.com](https://rebelytics.com). Real-world breakage is the best signal
-for improving the guide. If a failure is the agent not following this skill,
-acknowledge and correct it rather than blaming the methodology.
 
 > **Tool names, and how to match them.** Names below are written without the
 > MCP server prefix (e.g. `domain`); your environment prefixes them, so match on
@@ -237,7 +226,10 @@ tool companion of this kind:
 
 - **Control call before any absence claim** — here: the undated, unfiltered
   `keyword view=seo` / `keyword_domain_seo` control (error taxonomy, historical
-  forensics recipe step 4, pre-flight item 9).
+  forensics recipe step 4, pre-flight item 9). The control proves the
+  instrument answered, not that its snapshot is the live SERP: a
+  single-keyword absence claim on a volatile head term gets a live or
+  first-party check before it reaches a client (forensics recipe, step 6).
 - **Inspect the actual response shape before scripting** — here: "Response
   shape — assume nothing", including single-row bare-object unwrapping on
   `keyword_domain_seo` (pre-flight item 5).
@@ -481,3 +473,13 @@ The test when adding any new rule to this file: could the sentence survive
 having "SISTRIX" removed? If yes, it is a rule about querying any opaque data
 source — keep it phrased generically, so it can be lifted into whatever
 companion skill documents the next tool.
+
+## Feedback on this skill
+
+If the user finds the methodology wrong or incomplete, or hits SISTRIX MCP
+behaviour this skill doesn't cover, offer to draft an issue for
+https://github.com/rebelytics/sistrix-mcp, checking the existing issues and
+pull requests for the same problem first; if the problem is the agent not
+following the skill's rules, acknowledge and correct it instead.
+
+SISTRIX MCP Companion: Eoghan Henn and contributors | CC BY 4.0

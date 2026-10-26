@@ -1,6 +1,6 @@
 # Workflows and analysis recipes (§6–§7)
 
-Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
+Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
 
 **Load trigger:** Read when the task combines tools into an analysis — a domain visibility snapshot, keyword research, an AI-visibility audit, Optimizer project monitoring, a visibility-drop or update post-mortem, cross-domain attribution, stress-testing a third-party report, or diagnosing why a directory rank does not convert to AI visibility.
 

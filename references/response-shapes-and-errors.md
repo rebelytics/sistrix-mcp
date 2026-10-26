@@ -1,6 +1,6 @@
 # Response shapes and error taxonomy (§4–§5)
 
-Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
+Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
 
 **Load trigger:** Read before scripting or building any artifact against a SISTRIX response, and whenever a call returns an error, a timeout or an empty result — before deciding what the symptom means.
 

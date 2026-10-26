@@ -1,6 +1,6 @@
 # AI visibility — branded vs discovery (§8)
 
-Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
+Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
 
 **Load trigger:** Read before reporting any AI visibility, share-of-voice, competitor or cited-source number taken from `ai_tracker` or `ai_check` — the branded-vs-discovery split is a hard rule, and the source views carry the same contamination.
 

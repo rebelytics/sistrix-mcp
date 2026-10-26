@@ -1,6 +1,6 @@
 # Tool-family reference (§3)
 
-Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn / [rebelytics.com](https://rebelytics.com)). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
+Part of the **sistrix-mcp** skill (CC BY 4.0 — Eoghan Henn and contributors). Section numbers are global across `SKILL.md` and `references/` — the section map in `SKILL.md` says where each § lives.
 
 **Load trigger:** Read before the first SISTRIX tool call of a session, and whenever a tool name, view, parameter or field has to be resolved — especially from older notes, scripts or deliverables that use the one-tool-per-dataset names.
 

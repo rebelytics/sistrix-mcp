@@ -1,7 +1,7 @@
 ---
 name: sistrix-mcp
 description: "Companion skill for the SISTRIX MCP server (SEO + AI-visibility data via the SISTRIX API). Load this whenever the user works with SISTRIX through an MCP — pulling Visibility Index, keyword/ranking data, backlinks, competitor sets, domain traffic estimates, or AI Overviews / AI Mode / ChatGPT / Perplexity mentions, sources and trackers. Also load for SISTRIX Optimizer project work (project rankings, onpage crawls) and any cross-market comparison or report built on SISTRIX data. Trigger on mentions of Sichtbarkeitsindex, ai_check/ai_tracker, the domain/keyword/links/project tools and their view parameters, or older ai_entity/ai_top/domain_/keyword_ names — even when the tools aren't named but SISTRIX data is clearly needed. Teaches the real behaviour of the MCP, including response-shape quirks and the gotchas tool descriptions omit."
-version: 1.7.2
+version: 1.8.0
 license: CC-BY-4.0
 metadata:
   author: Eoghan Henn and contributors

@@ -117,6 +117,19 @@ validation step in the historical visibility-loss forensics recipe.
     session doesn't re-derive the call shape): `domain view=visindex
     history=true limit=140`, and `domain view=ranking_distribution` both with
     and without a `date`.
+  - **The `domain` argument takes a host or one page — there is no directory
+    form.** A bare host returns the host's index. A URL with a scheme
+    (`https://example.com/path/`) is read as that one exact page, not the
+    directory under it. A path without a scheme (`example.com/path/`) is
+    rejected by argument validation ("contains / but no URL scheme").
+    Observed with `view=visindex` on one instance at last verification: a
+    directory URL returned an all-zero daily series while the host-level
+    series in the same minute was non-zero, because the directory's own URL
+    ranked for nothing. Directory-level visibility is a Toolbox UI view; for
+    a path-level trend on the MCP use `keyword_domain_seo` with `regex_url`
+    as a qualitative sample, or search-console data. An all-zero series on a
+    newly tried argument form is first a claim about the form, never a
+    finding.
 - `domain view=visindex_overview` — **a series-extent view, not a current
   value. Verified against the live server at last check — re-run the call
   to confirm.** It reports how much

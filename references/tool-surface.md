@@ -188,7 +188,20 @@ validation step in the historical visibility-loss forensics recipe.
     carry no `ai_answer` flag, so a filtered result looks identical to the
     unfiltered top keywords. Treat with caution; cross-check via
     `keyword view=serpfeatures` or `ai_check view=prompts` rather than trusting
-    the filter silently applied.
+    the filter silently applied. At last verification it was **not
+    applied**: rows kept coming past offset 1,000, including brand and
+    person queries that show no AI answer — so a count by `offset` over
+    this filter measures nothing.
+  - **A ranking share from this tool is a lower bound** wherever
+    `keyword view=seo` holds no stored SERP for the keyword: `view=seo`
+    returned Error 1000 for a large share of sampled keywords, including
+    four-figure-volume ones, and a domain cannot show a ranking on a SERP
+    that is not stored. Probe a few with `view=seo` and report how many came
+    back empty beside any "ranks for none of N" figure.
+  - **Before using any filter or modifier for a before/after comparison**,
+    run a positive and a negative control (a query that certainly has the
+    property, one that certainly has not); if both come back, stop — the
+    filter is not applied.
   - **`regex_keyword` is confirmed working on the consolidated surface** — and
     an `Error (1000)` on a tight regex is only readable as a real absence once
     a **control call returns rows**. An exact-match regex that returns
@@ -259,7 +272,10 @@ validation step in the historical visibility-loss forensics recipe.
     principles section.
 - `keyword view=serpfeatures` — a feature→value map (ORGANIC, PRODUCTS,
   RELATED_QUESTION, VIDEO, …). `show_all_types=true` also lists untriggered
-  feature types.
+  feature types. **It ignores `date`**: the output was identical with and
+  without a past date at last verification, so it cannot show whether a
+  feature spread over a period. `keyword view=seo history=true` returns
+  positions without dates, so it cannot either.
 - `keyword view=traffic` — {traffic, clicks, country}. No `history` param;
   use `show_all=true` for the timeline and `show_all_countries=true` for
   cross-country volume. **`show_all_countries=true` is a heavy payload** —
@@ -292,6 +308,11 @@ one for its AI sibling.**
   the common qualified form (the head term plus its usual category or
   market qualifier), take the **max** as the concept's demand, and report
   **which variant carried it** — the lead string is also the one to target.
+  The converse holds too: synonyms that carry the **identical** volume
+  (`hip hop vinyl` = `hip hop vinyl records`, both 700, at last
+  verification) are one cluster value repeated per string, so summing
+  variants double-counts — a concept's demand is the max over its
+  variants, never the sum.
   Read a 10 as "this string isn't the lead", never as "nobody searches
   this". This is a separate failure from the Error-1000 reading below: the
   string is in the database and returns a number; the number is simply not
@@ -317,6 +338,11 @@ one for its AI sibling.**
   and take the demand read from a source that observes the market directly
   (search-console data in that market's language, site search, community
   questions).
+- **Small-market modifier strings sit at the floor.** In smaller markets
+  nearly every entity × modifier string (`<artist> vinyl`) can return
+  exactly 10 while the bare entity carries thousands: the floor hides the
+  long tail rather than measuring it. Size such demand from first-party
+  query data, and report the floor as "below measurement", never as 10.
 - **The same shape appears on `ai_topicresearch`: an overview returning 0
   topics for an emerging entity or category describes the database, not the
   market.** Topic research is built over what has already been crawled and
